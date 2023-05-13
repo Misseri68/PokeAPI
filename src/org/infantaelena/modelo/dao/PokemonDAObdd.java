@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class PokemonDAObdd {
     // Nombre de la base de datos que vamos a usar
-    String databaseFileName = "pokeapi.db";
+    static String databaseFileName = "pokeapi.db";
 
-    public void cargarBaseDeDatos() {
+    public static void cargarBaseDeDatos() {
         // Establecemos la conexion a la base de datos
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
 

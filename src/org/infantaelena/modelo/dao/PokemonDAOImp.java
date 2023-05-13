@@ -3,7 +3,9 @@ package org.infantaelena.modelo.dao;
 import org.infantaelena.excepciones.PokemonNotFoundException;
 import org.infantaelena.excepciones.PokemonRepeatedException;
 import org.infantaelena.modelo.entidades.Pokemon;
+import org.infantaelena.modelo.dao.PokemonDAObdd;
 
+import java.beans.Statement;
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ import java.util.List;
  */
 public class PokemonDAOImp implements PokemonDAO{
 
+    PokemonDAObdd pokemonBDD = new PokemonDAObdd();
     @Override
     public void crear(Pokemon pokemon) throws PokemonRepeatedException {
 

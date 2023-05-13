@@ -3,6 +3,7 @@ package org.infantaelena.controlador;
 import org.infantaelena.vista.Vista;
 import org.infantaelena.modelo.dao.PokemonDAOImp;
 import org.infantaelena.modelo.entidades.Pokemon;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,12 +19,14 @@ import org.infantaelena.modelo.entidades.Pokemon;
 
 public class Controlador {
 
-    private Vista vista;
+
     private PokemonDAOImp modelo;
+    private Vista vista;
+
+    ArrayList<Pokemon> students = new ArrayList<>();
 
     public Controlador() {
+        // modelo = new PokemonDAOImp("");
         vista = new Vista();
-        modelo = new PokemonDAOImp();
     }
-
 }

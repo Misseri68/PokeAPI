@@ -1,0 +1,11 @@
+DROP DATABASE IF EXISTS pokeapi;
+CREATE DATABASE pokeapi CHARACTER SET utf8mb4;
+USE pokeapi;
+
+CREATE TABLE pokemon(
+nombre VARCHAR(10) NOT NULL,
+tipo VARCHAR(10) NOT NULL,
+vida INT NOT NULL, 
+ataque INT NOT NULL, 
+defensa INT NOT NULL
+); 

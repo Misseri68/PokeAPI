@@ -1,0 +1,74 @@
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Pikachu', 'Eléctrico', 35, 55, 40);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Charizard', 'Fuego', 78, 84, 78);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Bulbasaur', 'Planta', 45, 49, 49);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Squirtle', 'Agua', 44, 48, 65);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Mewtwo', 'Psíquico', 106, 110, 90);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Mew', 'Psíquico', 100, 100, 100);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Snorlax', 'Normal', 160, 110, 65);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Dragonite', 'Dragón', 91, 134, 95);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Gyarados', 'Agua', 95, 125, 79);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Raichu', 'Eléctrico', 60, 90, 55);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Blaziken', 'Fuego', 80, 120, 70);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Gardevoir', 'Psíquico', 68, 65, 65);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Greninja', 'Agua', 72, 95, 67);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Gengar', 'Fantasma', 60, 65, 60);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Lucario', 'Lucha', 70, 110, 70);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Venusaur', 'Planta', 80, 82, 83);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Lapras', 'Agua', 130, 85, 80);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Umbreon', 'Siniestro', 95, 65, 110);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Sylveon', 'Hada', 95, 65, 65);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Mudkip', 'Agua', 50, 70, 50);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Torchic', 'Fuego', 45, 60, 40);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Groudon', 'Tierra', 100, 150, 140);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Kyogre', 'Agua', 100, 100, 90);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Rayquaza', 'Dragón', 105, 150, 90);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Lugia', 'Psíquico', 106, 90, 130);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Ho-Oh', 'Fuego', 106, 130, 90);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Zapdos', 'Eléctrico', 90, 90, 85);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Articuno', 'Hielo', 90, 85, 100);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Moltres', 'Fuego', 90, 100, 90);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Typhlosion', 'Fuego', 78, 84, 78);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Chikorita', 'Planta', 45, 49, 65);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Cyndaquil', 'Fuego', 39, 52, 43);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Totodile', 'Agua', 50, 65, 64);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Espeon', 'Psíquico', 65, 65, 60);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Glaceon', 'Hielo', 65, 60, 110);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Leafeon', 'Planta', 65, 110, 130);
+INSERT INTO pokemon(nombre, tipo, vida, ataque, defensa)
+VALUES ('Jolteon', 'Eléctrico', 65, 65, 60);

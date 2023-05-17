@@ -12,44 +12,65 @@ public class PokemonDAObdd {
     ////TODO: quitarle los comentarios del argumento String databaseFileName que le dará el método seleccionarBDD en Controlador.
     static String databaseFileName = "pokeapi.db";
 
-
-    public static void cargarBaseDeDatos(/*String databaseFileName*/) {
-        // Establecemos la conexion a la base de datos
+    public static void cargarBaseDeDatos(String databaseFileName) {
+        // Establecemos la conexión a la base de datos
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
 
             // Verificamos si la base de datos ya existe
             boolean existe = new File(databaseFileName).exists();
 
             if (!existe) {
-                System.out.println("La base de datos no existe. Se creara una nueva... ");
+                System.out.println("La base de datos no existe. Se creará una nueva... ");
 
-                // Leemos el contenido del archivo create pokeapi.db y lo ejecutamos con un statement
-                File fileCreate = new File("./create pokeapi.db");
-                try (Scanner scc = new Scanner(fileCreate)) {
-                    Statement statement = connection.createStatement();
-                    while (scc.hasNextLine()) {
-                        String line = scc.nextLine();
-                        statement.execute(line);
-                    }
-                    statement.close();
-                } catch (FileNotFoundException | SQLException e) {
-                    System.out.println("Archivo create pokeapi.db no encontrado o error al ejecutar.");
+                // Creamos la tabla Pokemon
+                String createTableQuery =
+                        "CREATE TABLE Pokemon (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "nombre TEXT," +
+                        "tipo TEXT," +
+                        "vida INTEGER," +
+                        "ataque INTEGER," +
+                        "defensa INTEGER" +
+                        ")";
+                try (Statement statement = connection.createStatement()) {
+                    statement.execute(createTableQuery);
+                } catch (SQLException e) {
+                    System.out.println("Error al crear la tabla Pokemon.");
+                    return;
                 }
 
-                // Leemos el contenido de insert pokeapi.db
-                File fileInsert = new File("./insert pokeapi.db");
-                try (Scanner sci = new Scanner(fileInsert)) {
-                    Statement statement = connection.createStatement();
-                    while (sci.hasNextLine()) {
-                        String line = sci.nextLine();
-                        statement.execute(line);
-                    }
-                    statement.close();
-                } catch (FileNotFoundException | SQLException e) {
-                    System.out.println("Archivo insert pokeapi.db no encontrado o error al ejecutar.");
-                }
+                // Insertamos los datos de ejemplo
+                String insertQuery = "INSERT INTO Pokemon (nombre, tipo, vida, ataque, defensa) VALUES (?, ?, ?, ?, ?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+                    // Insertar Pokemon 1
+                    preparedStatement.setString(1, "Bulbasaur");
+                    preparedStatement.setString(2, "Planta");
+                    preparedStatement.setInt(3, 45);
+                    preparedStatement.setInt(4, 49);
+                    preparedStatement.setInt(5, 49);
+                    preparedStatement.executeUpdate();
 
-                System.out.println("La base de datos se ha cargado correctamente!");
+                    // Insertar Pokemon 2
+                    preparedStatement.setString(1, "Charmander");
+                    preparedStatement.setString(2, "Fuego");
+                    preparedStatement.setInt(3, 39);
+                    preparedStatement.setInt(4, 52);
+                    preparedStatement.setInt(5, 43);
+                    preparedStatement.executeUpdate();
+
+                    // Insertar Pokemon 3
+                    preparedStatement.setString(1, "Squirtle");
+                    preparedStatement.setString(2, "Agua");
+                    preparedStatement.setInt(3, 44);
+                    preparedStatement.setInt(4, 48);
+                    preparedStatement.setInt(5, 65);
+                    preparedStatement.executeUpdate();
+
+                    System.out.println("Los datos se han cargado correctamente en la base de datos!");
+
+                } catch (SQLException e) {
+                    System.out.println("Error al insertar los datos.");
+                }
 
             } else {
                 System.out.println("La base de datos ya existe!");
@@ -60,4 +81,5 @@ public class PokemonDAObdd {
         }
     }
 }
+
 

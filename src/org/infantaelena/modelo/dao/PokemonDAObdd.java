@@ -26,8 +26,8 @@ public class PokemonDAObdd {
                 String createTableQuery =
                         "CREATE TABLE Pokemon (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        "nombre TEXT," +
-                        "tipo TEXT," +
+                        "nombre STRING," +
+                        "tipo ENUM," +
                         "vida INTEGER," +
                         "ataque INTEGER," +
                         "defensa INTEGER" +

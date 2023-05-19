@@ -8,10 +8,12 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class PokemonDAObdd {
-    // Nombre de la base de datos que vamos a usar
+    // Nombre de la base de datos que vamos a usar-
+    ////TODO: quitarle los comentarios del argumento String databaseFileName que le dará el método seleccionarBDD en Controlador.
     static String databaseFileName = "pokeapi.db";
 
-    public static void cargarBaseDeDatos() {
+
+    public static void cargarBaseDeDatos(/*String databaseFileName*/) {
         // Establecemos la conexion a la base de datos
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
 

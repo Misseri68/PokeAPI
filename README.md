@@ -105,7 +105,7 @@ Esta clase no debe implementar ningún elemento gráfico o usar Scanner, todos l
 package madrid.org.controlador;
 
 import org.infantaelena.vista.Vista;
-import org.infantaelena.modelo.dao.PokemonDAOImp;
+import org.infantaelena.modelo.dao.PokemonDAOImpl;
 import org.infantaelena.modelo.entidades.Pokemon;
 
 public class Controlador{

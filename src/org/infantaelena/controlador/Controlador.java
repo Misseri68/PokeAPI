@@ -1,7 +1,6 @@
 package org.infantaelena.controlador;
 
 import org.infantaelena.vista.Vista;
-import org.infantaelena.modelo.dao.PokemonDAOImp;
 import org.infantaelena.modelo.entidades.Pokemon;
 import java.util.ArrayList;
 
@@ -19,8 +18,7 @@ import java.util.ArrayList;
 
 public class Controlador {
 
-
-    private PokemonDAOImp modelo;
+    //TODO: He borrado la linea de codigo que usabais para llamar a private PokemonDaoImp modelo; si requeris de la interfaz llamadla a traves del PokemonDAO impl.
     private Vista vista;
 
     ArrayList<Pokemon> students = new ArrayList<>();

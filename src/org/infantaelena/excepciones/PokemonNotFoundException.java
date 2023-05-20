@@ -8,4 +8,7 @@ package org.infantaelena.excepciones;
  *
  */
 public class PokemonNotFoundException extends Exception {
+    public PokemonNotFoundException(String pokemonNoEncontrado) {
+
+    }
 }

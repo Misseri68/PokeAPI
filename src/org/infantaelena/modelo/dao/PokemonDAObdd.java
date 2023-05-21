@@ -25,7 +25,7 @@ public class PokemonDAObdd {
                         "CREATE TABLE Pokemon (" +
                                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                                 "nombre STRING," +
-                                "tipo ENUM," +
+                                "tipo STRING," +
                                 "vida INTEGER," +
                                 "ataque INTEGER," +
                                 "defensa INTEGER" +
@@ -37,12 +37,13 @@ public class PokemonDAObdd {
                     return;
                 }
 
+
                 // Insertamos los datos de ejemplo
                 String insertQuery = "INSERT INTO Pokemon (nombre, tipo, vida, ataque, defensa) VALUES (?, ?, ?, ?, ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                     // Insertar Pokemon 1
                     preparedStatement.setString(1, "Bulbasaur");
-                    preparedStatement.setString(2, "Planta");
+                    preparedStatement.setString(2, "PLANTA");
                     preparedStatement.setInt(3, 45);
                     preparedStatement.setInt(4, 49);
                     preparedStatement.setInt(5, 49);
@@ -50,7 +51,7 @@ public class PokemonDAObdd {
 
                     // Insertar Pokemon 2
                     preparedStatement.setString(1, "Charmander");
-                    preparedStatement.setString(2, "Fuego");
+                    preparedStatement.setString(2, "FUEGO");
                     preparedStatement.setInt(3, 39);
                     preparedStatement.setInt(4, 52);
                     preparedStatement.setInt(5, 43);
@@ -58,7 +59,7 @@ public class PokemonDAObdd {
 
                     // Insertar Pokemon 3
                     preparedStatement.setString(1, "Squirtle");
-                    preparedStatement.setString(2, "Agua");
+                    preparedStatement.setString(2, "AGUA");
                     preparedStatement.setInt(3, 44);
                     preparedStatement.setInt(4, 48);
                     preparedStatement.setInt(5, 65);

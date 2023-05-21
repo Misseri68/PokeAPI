@@ -76,44 +76,44 @@ public class Vista extends JFrame {
         this.tipoCombobox = tipoCombobox;
     }
 
-    public JButton getSeleccionarPokemon() {
-        return seleccionarPokemon;
+    public JButton getBotonSeleccionarPokemon() {
+        return botonSeleccionarPokemon;
     }
 
-    public void setSeleccionarPokemon(JButton seleccionarPokemon) {
-        this.seleccionarPokemon = seleccionarPokemon;
+    public void setBotonSeleccionarPokemon(JButton botonSeleccionarPokemon) {
+        this.botonSeleccionarPokemon = botonSeleccionarPokemon;
     }
 
-    public JButton getCrearPokemonButton() {
-        return crearPokemonButton;
+    public JButton getBotonCrearPokemon() {
+        return botonCrearPokemon;
     }
 
-    public void setCrearPokemonButton(JButton crearPokemonButton) {
-        this.crearPokemonButton = crearPokemonButton;
+    public void setBotonCrearPokemon(JButton botonCrearPokemon) {
+        this.botonCrearPokemon = botonCrearPokemon;
     }
 
-    public JButton getActualizarPokemon() {
-        return actualizarPokemon;
+    public JButton getBotonActualizarPokemon() {
+        return botonActualizarPokemon;
     }
 
-    public void setActualizarPokemon(JButton actualizarPokemon) {
-        this.actualizarPokemon = actualizarPokemon;
+    public void setBotonActualizarPokemon(JButton botonActualizarPokemon) {
+        this.botonActualizarPokemon = botonActualizarPokemon;
     }
 
-    public JButton getVerListaPokemonButton() {
-        return verListaPokemonButton;
+    public JButton getBotonVerListaPokemon() {
+        return botonVerListaPokemon;
     }
 
-    public void setVerListaPokemonButton(JButton verListaPokemonButton) {
-        this.verListaPokemonButton = verListaPokemonButton;
+    public void setBotonVerListaPokemon(JButton botonVerListaPokemon) {
+        this.botonVerListaPokemon = botonVerListaPokemon;
     }
 
-    public JButton getGuardarPokemonButton() {
-        return guardarPokemonButton;
+    public JButton getBotonGuardarPokemon() {
+        return botonGuardarPokemon;
     }
 
-    public void setGuardarPokemonButton(JButton guardarPokemonButton) {
-        this.guardarPokemonButton = guardarPokemonButton;
+    public void setBotonGuardarPokemon(JButton botonGuardarPokemon) {
+        this.botonGuardarPokemon = botonGuardarPokemon;
     }
 
     public JTextField getTextoNombre() {
@@ -148,12 +148,12 @@ public class Vista extends JFrame {
         this.areadeTexto = areadeTexto;
     }
 
-    public JButton getBorrarPokemon() {
-        return borrarPokemon;
+    public JButton getBotonBorrarPokemon() {
+        return botonBorrarPokemon;
     }
 
-    public void setBorrarPokemon(JButton borrarPokemon) {
-        this.borrarPokemon = borrarPokemon;
+    public void setBotonBorrarPokemon(JButton botonBorrarPokemon) {
+        this.botonBorrarPokemon = botonBorrarPokemon;
     }
 
     public JPanel getPanel() {
@@ -203,16 +203,17 @@ public class Vista extends JFrame {
     private JLabel tipoLabel;
     private JLabel vidaLabel;
     private JComboBox<String> tipoCombobox;
-    private JButton seleccionarPokemon;
-    private JButton crearPokemonButton;
-    private JButton actualizarPokemon;
-    private JButton verListaPokemonButton;
-    private JButton guardarPokemonButton;
+    private JButton botonSeleccionarPokemon;
+    private JButton botonCrearPokemon;
+    private JButton botonActualizarPokemon;
+    private JButton botonVerListaPokemon;
+    private JButton botonGuardarPokemon;
+    private JButton botonBorrarPokemon;
+
     private JTextField textoNombre;
     private JLabel nombreLabel;
     private JTextField pokeAPITextField;
     private JTextArea areadeTexto;
-    private JButton borrarPokemon;
     private JPanel panel;
     private JTextField textfieldVida;
     private JTextField textfieldAtaque;
@@ -224,14 +225,9 @@ public class Vista extends JFrame {
         setContentPane(panel);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame frame = new Vista();
-                frame.setSize(300, 300);
-                frame.setVisible(true);
-            }
-        });
-}
+    //method to show an info alert
+    public void imprimirTexto(String texto) {
+        JOptionPane.showMessageDialog(rootPane, texto);
+    }
+
 }

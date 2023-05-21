@@ -9,13 +9,13 @@ package org.infantaelena.modelo.entidades;
 public class Pokemon {
     private int id;
     private String nombre;
-    private String tipo;
+    private Tipo tipo;
     private int vida;
     private int ataque;
     private int defensa;
     public Pokemon() {}
 
-    public Pokemon(String nombre, String tipo, int vida, int ataque, int defensa){
+    public Pokemon(String nombre, Tipo tipo, int vida, int ataque, int defensa){
         this.nombre = nombre;
         this.tipo = tipo;
         this.vida = vida;
@@ -41,11 +41,11 @@ public class Pokemon {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
@@ -72,12 +72,16 @@ public class Pokemon {
     public void setDefensa(int defensa) {
         this.defensa = defensa;
     }
+
+
+    //TODO: mirar si aquí hace falta cambiar el tipo a tipo.toString
     @Override
     public String toString() {
         return "Pokemon{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo + '\'' +
+                ", tipo='" + tipo.toString()
+                + '\'' +
                 ", vida=" + vida +
                 ", ataque=" + ataque +
                 ", defensa=" + defensa +

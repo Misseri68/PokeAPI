@@ -1,8 +1,13 @@
 package org.infantaelena.controlador;
 
+import org.infantaelena.excepciones.PokemonNotFoundException;
+import org.infantaelena.modelo.dao.PokemonDaoImpl;
+import org.infantaelena.modelo.dao.PokemonDAObdd;
+import org.infantaelena.modelo.entidades.Tipo;
 import org.infantaelena.vista.Vista;
 import org.infantaelena.modelo.entidades.Pokemon;
 import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  *
@@ -20,11 +25,53 @@ public class Controlador {
 
     //TODO: He borrado la linea de codigo que usabais para llamar a private PokemonDaoImp modelo; si requeris de la interfaz llamadla a traves del PokemonDAO impl.
     private Vista vista;
-
-    ArrayList<Pokemon> students = new ArrayList<>();
-
+    private PokemonDAObdd modelo;
+    private PokemonDaoImpl modeloMetodos;
+    private ArrayList<Pokemon> pokemones = new ArrayList<>();
+    private Pokemon pijachu = new Pokemon("PIJACHU", Tipo.ELECTRICO, 100, 100, 100);
     public Controlador() {
-        // modelo = new PokemonDAOImp("");
-        vista = new Vista();
+        this.vista = new Vista();
+        this.modelo = new PokemonDAObdd();
+        this.modeloMetodos = new PokemonDaoImpl();
+        this.pokemones = new ArrayList<Pokemon>();
+        pokemones.add(0, pijachu);
+        this.vista.getBotonVerListaPokemon().addActionListener(e -> {
+
+        });
+        this.vista.getBotonSeleccionarPokemon().addActionListener(e -> {
+
+        });
+        this.vista.getBotonCrearPokemon().addActionListener(e -> {
+
+        });
+        this.vista.getBotonActualizarPokemon().addActionListener(e -> {
+
+        });
+        this.vista.getBotonBorrarPokemon().addActionListener(e -> {
+
+        });
+        this.vista.getBotonGuardarPokemon().addActionListener(e -> {
+
+        });
     }
+
+    private void listarPokemon() {
+        pokemones = (ArrayList<Pokemon>) modeloMetodos.leerTodos();
+        //TODO: imprimirTexto, for each del arraylist que utilice pokemones.
+      //  vista.imprimirTexto();
+    }
+
+    private void crearPokemon() throws PokemonNotFoundException {
+        modeloMetodos.leerPorNombre(vista.getTextoNombre().getText().trim().toUpperCase());
+    }
+
+/*    private void crearPokemonC(){
+
+    }
+    private void crearPokemonC(){
+
+    }
+    private void crearPokemonC(){
+
+    } */
 }

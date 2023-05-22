@@ -9,10 +9,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.infantaelena.modelo.dao.PokemonDAObdd.databaseFileName;
 
 public class PokemonDaoImpl implements PokemonDAO {
-
+String databaseFileName = "pokeapi.db";
     @Override
     public void crear(Pokemon pokemon) throws PokemonRepeatedException {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {

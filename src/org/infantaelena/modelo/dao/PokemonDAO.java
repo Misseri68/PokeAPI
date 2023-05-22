@@ -6,7 +6,6 @@ import org.infantaelena.modelo.entidades.Pokemon;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import static org.infantaelena.modelo.dao.PokemonDAObdd.databaseFileName;
 import org.infantaelena.modelo.entidades.Tipo;
 
 /**

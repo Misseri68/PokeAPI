@@ -1,44 +1,36 @@
 package org.infantaelena.modelo.dao;
-import org.infantaelena.modelo.entidades.Pokemon;
 
-import java.io.File;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
+    public class PokemonDAObdd {
+        public static void cargarBaseDeDatos() {
+            String databaseFileName = "pokeapi.db";
+            try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
+                System.out.println("Conexión establecida a la base de datos: " + databaseFileName);
 
-public class PokemonDAObdd {
-    // Nombre de la base de datos que vamos a usar-
-    ////TODO: quitarle los comentarios del argumento String databaseFileName que le dará el método seleccionarBDD en Controlador.
-    static String databaseFileName = "pokeapi.db";
-
-    public static void cargarBaseDeDatos(String databaseFileName) {
-        // Establecemos la conexión a la base de datos
-        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
-
-            // Verificamos si la base de datos ya existe
-            boolean existe = new File(databaseFileName).exists();
-
-            if (!existe) {
-                System.out.println("La base de datos no existe. Se creará una nueva... ");
-
-                // Creamos la tabla Pokemon
+                // Crear la tabla Pokemon
                 String createTableQuery =
-                        "CREATE TABLE Pokemon (" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                "nombre STRING," +
-                                "tipo STRING," +
-                                "vida INTEGER," +
-                                "ataque INTEGER," +
-                                "defensa INTEGER" +
-                                ")";
+                        "CREATE TABLE IF NOT EXISTS Pokemon (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "nombre TEXT," +
+                        "tipo TEXT," +
+                        "vida INTEGER," +
+                        "ataque INTEGER," +
+                        "defensa INTEGER" +
+                        ")";
                 try (Statement statement = connection.createStatement()) {
                     statement.execute(createTableQuery);
+                    System.out.println("Tabla Pokemon creada o ya existente.");
                 } catch (SQLException e) {
-                    System.out.println("Error al crear la tabla Pokemon.");
+                    System.out.println("Error al crear la tabla Pokemon: " + e.getMessage());
                     return;
                 }
 
-
-                // Insertamos los datos de ejemplo
+                // Insertar los datos de ejemplo
                 String insertQuery = "INSERT INTO Pokemon (nombre, tipo, vida, ataque, defensa) VALUES (?, ?, ?, ?, ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                     // Insertar Pokemon 1
@@ -68,17 +60,15 @@ public class PokemonDAObdd {
                     System.out.println("Los datos se han cargado correctamente en la base de datos!");
 
                 } catch (SQLException e) {
-                    System.out.println("Error al insertar los datos.");
+                    System.out.println("Error al insertar los datos: " + e.getMessage());
                 }
-
-            } else {
-                System.out.println("La base de datos ya existe!");
+            } catch (SQLException e) {
+                System.out.println("Error al conectar con la base de datos: " + e.getMessage());
             }
-
-        } catch (SQLException e) {
-            System.out.println("Error al conectar con la base de datos.");
         }
+
+    public static void main(String[] args) {
+        String databaseFileName = "pokeapi.db";
+        PokemonDAObdd.cargarBaseDeDatos();
     }
 }
-
-

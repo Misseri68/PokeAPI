@@ -223,6 +223,9 @@ public class Vista extends JFrame {
     public Vista() {
         super("pokeAPI");
         setContentPane(panel);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
     //method to show an info alert

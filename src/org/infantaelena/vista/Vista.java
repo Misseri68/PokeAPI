@@ -1,5 +1,9 @@
 package org.infantaelena.vista;
+import org.infantaelena.modelo.entidades.Tipo;
+
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
 
 /**
  * Clase que representa la vista de la aplicación
@@ -68,11 +72,11 @@ public class Vista extends JFrame {
         this.vidaLabel = vidaLabel;
     }
 
-    public JComboBox<String> getTipoCombobox() {
+    public JComboBox<Tipo> getTipoCombobox() {
         return tipoCombobox;
     }
 
-    public void setTipoCombobox(JComboBox<String> tipoCombobox) {
+    public void setTipoCombobox(JComboBox<Tipo> tipoCombobox) {
         this.tipoCombobox = tipoCombobox;
     }
 
@@ -202,7 +206,7 @@ public class Vista extends JFrame {
     private JTextField textFieldDefensa;
     private JLabel tipoLabel;
     private JLabel vidaLabel;
-    private JComboBox<String> tipoCombobox;
+    private JComboBox<Tipo> tipoCombobox;
     private JButton botonSeleccionarPokemon;
     private JButton botonCrearPokemon;
     private JButton botonActualizarPokemon;
@@ -220,17 +224,22 @@ public class Vista extends JFrame {
     private JTextField textfieldDefensa;
     private JLabel defensa;
 
+    private ArrayList<Tipo> tipoEnum = new ArrayList<>(EnumSet.allOf(Tipo.class));
+
 
     public Vista() {
         super("pokeAPI");
         setContentPane(panel);
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        for (Tipo tipoEnum : Tipo.values()) {
+            tipoCombobox.addItem(tipoEnum);
+        }
         setVisible(true);
     }
 
     //method to show an info alert
-    public void imprimirTexto(String texto) {
+    public void alertar(String texto) {
         JOptionPane.showMessageDialog(rootPane, texto);
     }
 

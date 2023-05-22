@@ -61,8 +61,13 @@ public class Controlador {
       //  vista.imprimirTexto();
     }
 
-    private void crearPokemon() throws PokemonNotFoundException {
-        modeloMetodos.leerPorNombre(vista.getTextoNombre().getText().trim().toUpperCase());
+    private void crearPokemon(){
+
+        try {
+            modeloMetodos.leerPorNombre(vista.getTextoNombre().getText().trim().toUpperCase());
+        } catch (PokemonNotFoundException e) {
+            vista.alertar("Error, el Pokemon no se ha encontrado");
+        }
     }
 
 /*    private void crearPokemonC(){

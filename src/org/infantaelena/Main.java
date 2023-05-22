@@ -8,7 +8,8 @@ public class Main
 
     public static void main(String args[]) {
 
-        new Vista();
+        Vista vista = new Vista();
+        vista.alertar("Hello PokeWorld!");
 
         /*
         SwingUtilities.invokeLater(new Runnable() {

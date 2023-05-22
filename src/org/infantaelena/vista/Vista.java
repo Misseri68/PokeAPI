@@ -132,12 +132,12 @@ public class Vista extends JFrame {
         this.nombreLabel = nombreLabel;
     }
 
-    public JTextField getPokeAPITextField() {
-        return pokeAPITextField;
+    public JLabel getPokeAPILabel() {
+        return pokeAPILabel;
     }
 
-    public void setPokeAPITextField(JTextField pokeAPITextField) {
-        this.pokeAPITextField = pokeAPITextField;
+    public void setPokeAPILabel(JLabel pokeAPILabel) {
+        this.pokeAPILabel = pokeAPILabel;
     }
 
     public JTextArea getAreadeTexto() {
@@ -212,14 +212,14 @@ public class Vista extends JFrame {
 
     private JTextField textoNombre;
     private JLabel nombreLabel;
-    private JTextField pokeAPITextField;
+    private JLabel pokeAPILabel;
     private JTextArea areadeTexto;
     private JPanel panel;
     private JTextField textfieldVida;
     private JTextField textfieldAtaque;
     private JTextField textfieldDefensa;
     private JLabel defensa;
-    private JLabel PokeAPILabel;
+
 
     public Vista() {
         super("pokeAPI");

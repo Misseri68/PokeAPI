@@ -1,9 +1,5 @@
 package org.infantaelena.vista;
-
-import org.infantaelena.modelo.entidades.Tipo;
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.EnumSet;
 
 /**
  * Clase que representa la vista de la aplicación
@@ -14,8 +10,6 @@ import java.util.EnumSet;
  *
  */
 public class Vista extends JFrame {
-    private ArrayList<Tipo> tipoEnum = new ArrayList<>(EnumSet.allOf(Tipo.class));
-
     private JLabel ataqueLabel;
     private JLabel defensaLabel;
     private JTextField textFieldVida;
@@ -23,20 +17,25 @@ public class Vista extends JFrame {
     private JTextField textFieldDefensa;
     private JLabel tipoLabel;
     private JLabel vidaLabel;
-    private JComboBox<Tipo> tipoCombobox;
+    private JComboBox<String> tipoCombobox;
     private JButton botonSeleccionarPokemon;
     private JButton botonCrearPokemon;
     private JButton botonActualizarPokemon;
     private JButton botonVerListaPokemon;
-    private JButton botonGuardarPokemon;
     private JButton botonBorrarPokemon;
-
     private JTextField textoNombre;
     private JLabel nombreLabel;
     private JLabel pokeAPILabel;
     private JTextArea areadeTexto;
     private JPanel panel;
+    private JTextField textfieldVida;
+    private JTextField textfieldAtaque;
+    private JTextField textfieldDefensa;
     private JLabel defensa;
+
+
+
+    private JButton filtrarPorTipo;
 
 
     public Vista() {
@@ -45,10 +44,13 @@ public class Vista extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        for (Tipo tipoEnum : Tipo.values()) {
-            tipoCombobox.addItem(tipoEnum);
-        }
+    }
+    public JButton getFiltrarPorTipo() {
+        return filtrarPorTipo;
+    }
 
+    public void setFiltrarPorTipo(JButton filtrarPorTipo) {
+        this.filtrarPorTipo = filtrarPorTipo;
     }
     public JLabel getAtaqueLabel() {
         return ataqueLabel;
@@ -106,14 +108,13 @@ public class Vista extends JFrame {
         this.vidaLabel = vidaLabel;
     }
 
-    public JComboBox<Tipo> getTipoCombobox() {
+    public JComboBox<String> getTipoCombobox() {
         return tipoCombobox;
     }
 
-    public void setTipoCombobox(JComboBox<Tipo> tipoCombobox) {
+    public void setTipoCombobox(JComboBox<String> tipoCombobox) {
         this.tipoCombobox = tipoCombobox;
     }
-
 
     public JButton getBotonSeleccionarPokemon() {
         return botonSeleccionarPokemon;
@@ -123,13 +124,6 @@ public class Vista extends JFrame {
         this.botonSeleccionarPokemon = botonSeleccionarPokemon;
     }
 
-    public JButton getBotonCrearPokemon() {
-        return botonCrearPokemon;
-    }
-
-    public void setBotonCrearPokemon(JButton botonCrearPokemon) {
-        this.botonCrearPokemon = botonCrearPokemon;
-    }
 
     public JButton getBotonActualizarPokemon() {
         return botonActualizarPokemon;
@@ -147,12 +141,12 @@ public class Vista extends JFrame {
         this.botonVerListaPokemon = botonVerListaPokemon;
     }
 
-    public JButton getBotonGuardarPokemon() {
-        return botonGuardarPokemon;
+    public JButton getBotonCrearPokemon() {
+        return botonCrearPokemon;
     }
 
-    public void setBotonGuardarPokemon(JButton botonGuardarPokemon) {
-        this.botonGuardarPokemon = botonGuardarPokemon;
+    public void setBotonCrearPokemon(JButton botonCrearPokemon) {
+        this.botonCrearPokemon = botonCrearPokemon;
     }
 
     public JTextField getTextoNombre() {
@@ -201,6 +195,30 @@ public class Vista extends JFrame {
 
     public void setPanel(JPanel panel) {
         this.panel = panel;
+    }
+
+    public JTextField getTextfieldVida() {
+        return textfieldVida;
+    }
+
+    public void setTextfieldVida(JTextField textfieldVida) {
+        this.textfieldVida = textfieldVida;
+    }
+
+    public JTextField getTextfieldAtaque() {
+        return textfieldAtaque;
+    }
+
+    public void setTextfieldAtaque(JTextField textfieldAtaque) {
+        this.textfieldAtaque = textfieldAtaque;
+    }
+
+    public JTextField getTextfieldDefensa() {
+        return textfieldDefensa;
+    }
+
+    public void setTextfieldDefensa(JTextField textfieldDefensa) {
+        this.textfieldDefensa = textfieldDefensa;
     }
 
     public JLabel getDefensa() {

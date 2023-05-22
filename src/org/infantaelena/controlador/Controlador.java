@@ -8,7 +8,6 @@ import org.infantaelena.modelo.entidades.Tipo;
 import org.infantaelena.vista.Vista;
 import org.infantaelena.modelo.entidades.Pokemon;
 import java.util.ArrayList;
-import javax.swing.*;
 
 /**
  *
@@ -52,7 +51,7 @@ public class Controlador {
         this.vista.getBotonBorrarPokemon().addActionListener(e -> {
 
         });
-        this.vista.getBotonGuardarPokemon().addActionListener(e -> {
+        this.vista.getBotonCrearPokemon().addActionListener(e -> {
 
         });
     }

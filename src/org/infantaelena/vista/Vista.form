@@ -134,36 +134,12 @@
           <text value="Seleccionar Pokemon"/>
         </properties>
       </component>
-      <component id="d504c" class="javax.swing.JButton" binding="botonCrearPokemon" default-binding="true">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Crear Pokemon"/>
-        </properties>
-      </component>
       <component id="a824f" class="javax.swing.JButton" binding="botonActualizarPokemon">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Actualizar Pokemon"/>
-        </properties>
-      </component>
-      <component id="eaee2" class="javax.swing.JButton" binding="botonVerListaPokemon" default-binding="true">
-        <constraints>
-          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Ver lista Pokemon"/>
-        </properties>
-      </component>
-      <component id="a3c32" class="javax.swing.JButton" binding="botonGuardarPokemon" default-binding="true">
-        <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Guardar Pokemon"/>
         </properties>
       </component>
       <component id="ebf27" class="javax.swing.JTextField" binding="textoNombre">
@@ -223,6 +199,30 @@
           <font name="Consolas" size="48" style="0"/>
           <foreground color="-16711423"/>
           <text value="PokeAPI "/>
+        </properties>
+      </component>
+      <component id="a3c32" class="javax.swing.JButton" binding="botonCrearPokemon">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Crear Pokemon"/>
+        </properties>
+      </component>
+      <component id="eaee2" class="javax.swing.JButton" binding="botonVerListaPokemon" default-binding="true">
+        <constraints>
+          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Ver lista Pokemon"/>
+        </properties>
+      </component>
+      <component id="94723" class="javax.swing.JButton" binding="filtrarPorTipo">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Filtrar por tipo"/>
         </properties>
       </component>
     </children>

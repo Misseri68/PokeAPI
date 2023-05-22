@@ -1,9 +1,5 @@
 package org.infantaelena.vista;
-import org.infantaelena.modelo.entidades.Tipo;
-
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.EnumSet;
 
 /**
  * Clase que representa la vista de la aplicación
@@ -15,7 +11,38 @@ import java.util.EnumSet;
  */
 public class Vista extends JFrame {
     private JLabel ataqueLabel;
+    private JLabel defensaLabel;
+    private JTextField textFieldVida;
+    private JTextField textFieldAtaque;
+    private JTextField textFieldDefensa;
+    private JLabel tipoLabel;
+    private JLabel vidaLabel;
+    private JComboBox<String> tipoCombobox;
+    private JButton botonSeleccionarPokemon;
+    private JButton botonCrearPokemon;
+    private JButton botonActualizarPokemon;
+    private JButton botonVerListaPokemon;
+    private JButton botonGuardarPokemon;
+    private JButton botonBorrarPokemon;
 
+    private JTextField textoNombre;
+    private JLabel nombreLabel;
+    private JLabel pokeAPILabel;
+    private JTextArea areadeTexto;
+    private JPanel panel;
+    private JTextField textfieldVida;
+    private JTextField textfieldAtaque;
+    private JTextField textfieldDefensa;
+    private JLabel defensa;
+
+
+    public Vista() {
+        super("pokeAPI");
+        setContentPane(panel);
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
     public JLabel getAtaqueLabel() {
         return ataqueLabel;
     }
@@ -72,11 +99,11 @@ public class Vista extends JFrame {
         this.vidaLabel = vidaLabel;
     }
 
-    public JComboBox<Tipo> getTipoCombobox() {
+    public JComboBox<String> getTipoCombobox() {
         return tipoCombobox;
     }
 
-    public void setTipoCombobox(JComboBox<Tipo> tipoCombobox) {
+    public void setTipoCombobox(JComboBox<String> tipoCombobox) {
         this.tipoCombobox = tipoCombobox;
     }
 
@@ -200,46 +227,10 @@ public class Vista extends JFrame {
         this.defensa = defensa;
     }
 
-    private JLabel defensaLabel;
-    private JTextField textFieldVida;
-    private JTextField textFieldAtaque;
-    private JTextField textFieldDefensa;
-    private JLabel tipoLabel;
-    private JLabel vidaLabel;
-    private JComboBox<Tipo> tipoCombobox;
-    private JButton botonSeleccionarPokemon;
-    private JButton botonCrearPokemon;
-    private JButton botonActualizarPokemon;
-    private JButton botonVerListaPokemon;
-    private JButton botonGuardarPokemon;
-    private JButton botonBorrarPokemon;
 
-    private JTextField textoNombre;
-    private JLabel nombreLabel;
-    private JLabel pokeAPILabel;
-    private JTextArea areadeTexto;
-    private JPanel panel;
-    private JTextField textfieldVida;
-    private JTextField textfieldAtaque;
-    private JTextField textfieldDefensa;
-    private JLabel defensa;
-
-    private ArrayList<Tipo> tipoEnum = new ArrayList<>(EnumSet.allOf(Tipo.class));
-
-
-    public Vista() {
-        super("pokeAPI");
-        setContentPane(panel);
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        for (Tipo tipoEnum : Tipo.values()) {
-            tipoCombobox.addItem(tipoEnum);
-        }
-        setVisible(true);
-    }
 
     //method to show an info alert
-    public void alertar(String texto) {
+    public void imprimirTexto(String texto) {
         JOptionPane.showMessageDialog(rootPane, texto);
     }
 

@@ -8,6 +8,7 @@ import org.infantaelena.modelo.entidades.Tipo;
 import org.infantaelena.vista.Vista;
 import org.infantaelena.modelo.entidades.Pokemon;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -33,17 +34,19 @@ public class Controlador {
         this.vista = new Vista();
         this.modelo = new PokemonDAObdd();
         this.modeloMetodos = new PokemonDaoImpl();
-        //TODO: hacer que la lista se actualice a la par que creas/actualizas/editas pokemones.
-        this.pokemones = new ArrayList<Pokemon>();
-        pokemones.add(0, pijachu);
+        PokemonDAObdd.cargarBaseDeDatos();
+        //Meto un pijachu para que no salte el nullpointer ecxception
+        if(pokemones.isEmpty()) pokemones.add(pijachu);
+        modeloMetodos.leerTodos();
+        pokemones.addAll((modeloMetodos.leerTodos()));
         this.vista.getBotonVerListaPokemon().addActionListener(e -> {
-
+            listarPokemon();
         });
         this.vista.getBotonSeleccionarPokemon().addActionListener(e -> {
             seleccionarPokemon(vista.getTextoNombre().getText().trim().toUpperCase());
         });
         this.vista.getBotonCrearPokemon().addActionListener(e -> {
-
+            crearPokemon();
         });
         this.vista.getBotonActualizarPokemon().addActionListener(e -> {
 
@@ -57,16 +60,20 @@ public class Controlador {
     }
 
     private void listarPokemon() {
-        pokemones = (ArrayList<Pokemon>) modeloMetodos.leerTodos();
-        //TODO: imprimirTexto, for each del arraylist que utilice pokemones.
-      //  vista.imprimirTexto();
+        StringBuilder sb = new StringBuilder();
+
+        for (Pokemon pokemonFor: pokemones) {
+            sb.append(pokemonFor.getNombre()).append("\n");
+        }
+        vista.getAreadeTexto().setText(sb.toString());
+
     }
 
     private void seleccionarPokemon(String pokemonName){
 
         try {
              Pokemon pokemon = modeloMetodos.leerPorNombre(pokemonName);
-             vista.getTextoNombre().setText((pokemon.getNombre()));
+             vista.getTextoNombre().setText((pokemon.getNombre().trim().toUpperCase()));
              vista.getTipoCombobox().setSelectedItem(String.valueOf(pokemon.getTipo()));
              vista.getTextFieldVida().setText(String.valueOf(pokemon.getVida()));
              vista.getTextFieldAtaque().setText(String.valueOf(pokemon.getAtaque()));
@@ -80,29 +87,43 @@ public class Controlador {
     }
 
     private void crearPokemon(){
-        Pokemon pokemon = new Pokemon(
-                vista.getTextoNombre().getText(),
-                Tipo.valueOf(vista.getTipoCombobox().getSelectedItem().toString()),
-                Integer.parseInt(vista.getTextFieldVida().getText()),
-                Integer.parseInt(vista.getTextFieldVida().getText()),
-                Integer.parseInt(vista.getTextFieldVida().getText()));
         try {
+            //Intentamos crear un Pokemon. Si los valores son null, o si se introduce !numeros en los campos númericos, se manejarán las excepciones.
+            Pokemon pokemon = new Pokemon(
+                    vista.getTextoNombre().getText(),
+                    Tipo.valueOf(Objects.requireNonNull(vista.getTipoCombobox().getSelectedItem()).toString()),
+                    Integer.parseInt(vista.getTextFieldVida().getText()),
+                    Integer.parseInt(vista.getTextFieldAtaque().getText()),
+                    Integer.parseInt(vista.getTextFieldDefensa().getText()));
+            //Intentamos introducir el pokemon creado en la base de datos. Si ya existe un pokemon con ese nombre, lanzará la excepción PokemonRepeatedException e.
             modeloMetodos.crear(pokemon);
+            vista.alertar("Pokemon " + pokemon.getNombre() + "creado correctamente");
         } catch (PokemonRepeatedException e) {
             throw new RuntimeException(e);
         } catch (NullPointerException e){
             vista.alertar("Tienes que introducir todos los datos!");
+        }  catch (NumberFormatException e) {
+            vista.alertar("Los valores de vida, ataque y defensa deben ser números enteros!");
         }
 
     }
 
-/*
-
+    private boolean existePokemon(Pokemon pokemon){
+        boolean existe = false;
+        for (Pokemon pokemonFor : pokemones) {
+            if (pokemonFor.getNombre().equals(pokemon.getNombre())){
+            existe = true;
+            }
+        }
+        return existe;
     }
-    private void crearPokemonC(){
 
-    }
-    private void crearPokemonC(){
+
+
+
+
+
+  /*  private void crearPokemonC(){
 
     } */
 }

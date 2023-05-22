@@ -1,5 +1,9 @@
 package org.infantaelena.vista;
+import org.infantaelena.modelo.entidades.Tipo;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
+
 
 /**
  * Clase que representa la vista de la aplicación
@@ -17,7 +21,7 @@ public class Vista extends JFrame {
     private JTextField textFieldDefensa;
     private JLabel tipoLabel;
     private JLabel vidaLabel;
-    private JComboBox<String> tipoCombobox;
+    private JComboBox<Tipo> tipoCombobox;
     private JButton botonSeleccionarPokemon;
     private JButton botonCrearPokemon;
     private JButton botonActualizarPokemon;
@@ -32,10 +36,8 @@ public class Vista extends JFrame {
     private JTextField textfieldAtaque;
     private JTextField textfieldDefensa;
     private JLabel defensa;
-
-
-
     private JButton filtrarPorTipo;
+    private ArrayList<Tipo> tipoEnum = new ArrayList<>(EnumSet.allOf(Tipo.class));
 
 
     public Vista() {
@@ -44,6 +46,9 @@ public class Vista extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        for (Tipo tipoEnum : Tipo.values()) {
+            tipoCombobox.addItem(tipoEnum);
+        }
     }
     public JButton getFiltrarPorTipo() {
         return filtrarPorTipo;
@@ -108,14 +113,14 @@ public class Vista extends JFrame {
         this.vidaLabel = vidaLabel;
     }
 
-    public JComboBox<String> getTipoCombobox() {
+
+    public JComboBox<Tipo> getTipoCombobox() {
         return tipoCombobox;
     }
 
-    public void setTipoCombobox(JComboBox<String> tipoCombobox) {
+    public void setTipoCombobox(JComboBox<Tipo> tipoCombobox) {
         this.tipoCombobox = tipoCombobox;
     }
-
     public JButton getBotonSeleccionarPokemon() {
         return botonSeleccionarPokemon;
     }

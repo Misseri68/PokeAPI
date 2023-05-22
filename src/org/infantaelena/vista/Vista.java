@@ -219,6 +219,7 @@ public class Vista extends JFrame {
     private JTextField textfieldAtaque;
     private JTextField textfieldDefensa;
     private JLabel defensa;
+    private JLabel PokeAPILabel;
 
     public Vista() {
         super("pokeAPI");

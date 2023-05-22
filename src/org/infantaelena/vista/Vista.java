@@ -1,5 +1,9 @@
 package org.infantaelena.vista;
+
+import org.infantaelena.modelo.entidades.Tipo;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
 
 /**
  * Clase que representa la vista de la aplicación
@@ -10,6 +14,8 @@ import javax.swing.*;
  *
  */
 public class Vista extends JFrame {
+    private ArrayList<Tipo> tipoEnum = new ArrayList<>(EnumSet.allOf(Tipo.class));
+
     private JLabel ataqueLabel;
     private JLabel defensaLabel;
     private JTextField textFieldVida;
@@ -17,7 +23,7 @@ public class Vista extends JFrame {
     private JTextField textFieldDefensa;
     private JLabel tipoLabel;
     private JLabel vidaLabel;
-    private JComboBox<String> tipoCombobox;
+    private JComboBox<Tipo> tipoCombobox;
     private JButton botonSeleccionarPokemon;
     private JButton botonCrearPokemon;
     private JButton botonActualizarPokemon;
@@ -30,9 +36,6 @@ public class Vista extends JFrame {
     private JLabel pokeAPILabel;
     private JTextArea areadeTexto;
     private JPanel panel;
-    private JTextField textfieldVida;
-    private JTextField textfieldAtaque;
-    private JTextField textfieldDefensa;
     private JLabel defensa;
 
 
@@ -42,6 +45,10 @@ public class Vista extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        for (Tipo tipoEnum : Tipo.values()) {
+            tipoCombobox.addItem(tipoEnum);
+        }
+
     }
     public JLabel getAtaqueLabel() {
         return ataqueLabel;
@@ -99,13 +106,14 @@ public class Vista extends JFrame {
         this.vidaLabel = vidaLabel;
     }
 
-    public JComboBox<String> getTipoCombobox() {
+    public JComboBox<Tipo> getTipoCombobox() {
         return tipoCombobox;
     }
 
-    public void setTipoCombobox(JComboBox<String> tipoCombobox) {
+    public void setTipoCombobox(JComboBox<Tipo> tipoCombobox) {
         this.tipoCombobox = tipoCombobox;
     }
+
 
     public JButton getBotonSeleccionarPokemon() {
         return botonSeleccionarPokemon;
@@ -195,30 +203,6 @@ public class Vista extends JFrame {
         this.panel = panel;
     }
 
-    public JTextField getTextfieldVida() {
-        return textfieldVida;
-    }
-
-    public void setTextfieldVida(JTextField textfieldVida) {
-        this.textfieldVida = textfieldVida;
-    }
-
-    public JTextField getTextfieldAtaque() {
-        return textfieldAtaque;
-    }
-
-    public void setTextfieldAtaque(JTextField textfieldAtaque) {
-        this.textfieldAtaque = textfieldAtaque;
-    }
-
-    public JTextField getTextfieldDefensa() {
-        return textfieldDefensa;
-    }
-
-    public void setTextfieldDefensa(JTextField textfieldDefensa) {
-        this.textfieldDefensa = textfieldDefensa;
-    }
-
     public JLabel getDefensa() {
         return defensa;
     }
@@ -230,7 +214,7 @@ public class Vista extends JFrame {
 
 
     //method to show an info alert
-    public void imprimirTexto(String texto) {
+    public void alertar(String texto) {
         JOptionPane.showMessageDialog(rootPane, texto);
     }
 

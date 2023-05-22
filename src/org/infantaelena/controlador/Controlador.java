@@ -1,6 +1,7 @@
 package org.infantaelena.controlador;
 
 import org.infantaelena.excepciones.PokemonNotFoundException;
+import org.infantaelena.excepciones.PokemonRepeatedException;
 import org.infantaelena.modelo.dao.PokemonDaoImpl;
 import org.infantaelena.modelo.dao.PokemonDAObdd;
 import org.infantaelena.modelo.entidades.Tipo;
@@ -33,13 +34,14 @@ public class Controlador {
         this.vista = new Vista();
         this.modelo = new PokemonDAObdd();
         this.modeloMetodos = new PokemonDaoImpl();
+        //TODO: hacer que la lista se actualice a la par que creas/actualizas/editas pokemones.
         this.pokemones = new ArrayList<Pokemon>();
         pokemones.add(0, pijachu);
         this.vista.getBotonVerListaPokemon().addActionListener(e -> {
 
         });
         this.vista.getBotonSeleccionarPokemon().addActionListener(e -> {
-
+            seleccionarPokemon(vista.getTextoNombre().getText().trim().toUpperCase());
         });
         this.vista.getBotonCrearPokemon().addActionListener(e -> {
 
@@ -61,16 +63,41 @@ public class Controlador {
       //  vista.imprimirTexto();
     }
 
-    private void crearPokemon(){
+    private void seleccionarPokemon(String pokemonName){
 
         try {
-            modeloMetodos.leerPorNombre(vista.getTextoNombre().getText().trim().toUpperCase());
+             Pokemon pokemon = modeloMetodos.leerPorNombre(pokemonName);
+             vista.getTextoNombre().setText((pokemon.getNombre()));
+             vista.getTipoCombobox().setSelectedItem(String.valueOf(pokemon.getTipo()));
+             vista.getTextFieldVida().setText(String.valueOf(pokemon.getVida()));
+             vista.getTextFieldAtaque().setText(String.valueOf(pokemon.getAtaque()));
+             vista.getTextFieldDefensa().setText(String.valueOf(pokemon.getDefensa()));
+
+
         } catch (PokemonNotFoundException e) {
             vista.alertar("Error, el Pokemon no se ha encontrado");
         }
+
     }
 
-/*    private void crearPokemonC(){
+    private void crearPokemon(){
+        Pokemon pokemon = new Pokemon(
+                vista.getTextoNombre().getText(),
+                Tipo.valueOf(vista.getTipoCombobox().getSelectedItem().toString()),
+                Integer.parseInt(vista.getTextFieldVida().getText()),
+                Integer.parseInt(vista.getTextFieldVida().getText()),
+                Integer.parseInt(vista.getTextFieldVida().getText()));
+        try {
+            modeloMetodos.crear(pokemon);
+        } catch (PokemonRepeatedException e) {
+            throw new RuntimeException(e);
+        } catch (NullPointerException e){
+            vista.alertar("Tienes que introducir todos los datos!");
+        }
+
+    }
+
+/*
 
     }
     private void crearPokemonC(){

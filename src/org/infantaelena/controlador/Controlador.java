@@ -157,8 +157,16 @@ public class Controlador {
         System.out.println("Pija pija!!!");
     }
 
-
-
+/** posible método para borrar pokemones
+    public void borrarPokemon(Pokemon pokemon, int index) {
+        // el índice está en un rango válido?
+        if (index >= 0 && index < pokemones.size()) {
+            // el pokemon a eliminar coincide con el actual?
+            if (pokemones.get(index).equals(pokemon)) {
+                pokemones.remove(index);  // Eliminar el pokemon del ArrayList
+            }
+        }
+    }**/
 
   /*  private void crearPokemonC(){
 

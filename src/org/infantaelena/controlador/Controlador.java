@@ -114,7 +114,29 @@ public class Controlador {
         }
 
     }
+/**
+    public int buscarPokemon(String nombre, int index) {
 
+        if (pokemones.isEmpty() || index >= pokemones.size()) {
+            return -1; //No se encontró el Pokémon, se devuelve -1
+        }
+    // // Verificar si el nombre en el índice actual coincide con el nombre buscado
+        if (nombre.equals(pokemones.get(index).getNombre())) {
+            return index;
+            // Se encontró el Pokémon, se devuelve el índice
+        }
+// llamada recursiva incrementando el índice en 1 para buscar en el siguiente elemento
+        return buscarPokemon(nombre, index + 1);
+    }
+
+    public void pokemonExiste(Pokemon pokemon) throws Exception {
+
+        // Verificar si la criptomoneda ya existe en la cartera
+        if (buscarPokemon(pokemon.getNombre(), 0) >= 0) {
+            throw new Exception("El pokemon ya  está en la cartera");
+        }
+    }
+    **/
     private boolean existePokemon(Pokemon pokemon){
         boolean existe = false;
         for (Pokemon pokemonFor : pokemones) {

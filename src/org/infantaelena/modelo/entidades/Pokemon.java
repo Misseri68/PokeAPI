@@ -13,10 +13,15 @@ public class Pokemon {
     private int vida;
     private int ataque;
     private int defensa;
-    public Pokemon() {}
+    public Pokemon() {
+        this.tipo=Tipo.NORMAL;
+        this.vida=0;
+        this.ataque=0;
+        this.defensa=0;
+    }
 
     public Pokemon(String nombre, Tipo tipo, int vida, int ataque, int defensa){
-        this.nombre = nombre;
+        this.nombre = nombre.trim().toUpperCase();
         this.tipo = tipo;
         this.vida = vida;
         this.ataque = ataque;
@@ -34,11 +39,11 @@ public class Pokemon {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.trim().toUpperCase();
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.trim().toUpperCase();
     }
 
     public Tipo getTipo() {
@@ -79,7 +84,7 @@ public class Pokemon {
     public String toString() {
         return "Pokemon{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
+                ", nombre='" + nombre.trim().toUpperCase() + '\'' +
                 ", tipo='" + tipo.toString()
                 + '\'' +
                 ", vida=" + vida +

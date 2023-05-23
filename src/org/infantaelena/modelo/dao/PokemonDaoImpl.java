@@ -17,7 +17,7 @@ String databaseFileName = "pokeapi.db";
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
             String insertarQuery = "INSERT INTO Pokemon (nombre, tipo, vida, ataque, defensa) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertarQuery)) {
-                preparedStatement.setString(1, pokemon.getNombre());
+                preparedStatement.setString(1, pokemon.getNombre().trim().toUpperCase());
                 preparedStatement.setString(2, String.valueOf(pokemon.getTipo()));
                 preparedStatement.setInt(3, pokemon.getVida());
                 preparedStatement.setInt(4, pokemon.getAtaque());
@@ -35,12 +35,12 @@ String databaseFileName = "pokeapi.db";
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
             String seleccionarQuery = "SELECT * FROM Pokemon WHERE nombre = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(seleccionarQuery)) {
-                preparedStatement.setString(1, nombre);
+                preparedStatement.setString(1, nombre.trim().toUpperCase());
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
                         pokemon = new Pokemon();
                         pokemon.setId(resultSet.getInt("id"));
-                        pokemon.setNombre(resultSet.getString("nombre"));
+                        pokemon.setNombre(resultSet.getString("nombre").trim().toUpperCase());
                         pokemon.setTipo(Tipo.valueOf(resultSet.getString("tipo")));
                         pokemon.setVida(resultSet.getInt("vida"));
                         pokemon.setAtaque(resultSet.getInt("ataque"));
@@ -66,7 +66,7 @@ String databaseFileName = "pokeapi.db";
                 while (resultSet.next()) {
                     Pokemon pokemon = new Pokemon();
                     pokemon.setId(resultSet.getInt("id"));
-                    pokemon.setNombre(resultSet.getString("nombre"));
+                    pokemon.setNombre(resultSet.getString("nombre").trim().toUpperCase());
                     pokemon.setTipo(Tipo.valueOf(resultSet.getString("tipo")));
                     pokemon.setVida(resultSet.getInt("vida"));
                     pokemon.setAtaque(resultSet.getInt("ataque"));
@@ -85,7 +85,7 @@ String databaseFileName = "pokeapi.db";
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
             String actualizarQuery = "UPDATE Pokemon SET nombre = ?, tipo = ?, vida = ?, ataque = ?, defensa = ? WHERE id = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(actualizarQuery)) {
-                preparedStatement.setString(1, pokemon.getNombre());
+                preparedStatement.setString(1, pokemon.getNombre().trim().toUpperCase());
                 preparedStatement.setString(2, String.valueOf(pokemon.getTipo()));
                 preparedStatement.setInt(3, pokemon.getVida());
                 preparedStatement.setInt(4, pokemon.getAtaque());
@@ -106,7 +106,7 @@ String databaseFileName = "pokeapi.db";
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
             String borrarQuery = "DELETE FROM Pokemon WHERE nombre = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(borrarQuery)) {
-                preparedStatement.setString(1, nombre);
+                preparedStatement.setString(1, nombre.trim().toUpperCase());
                 int filasAfectadas = preparedStatement.executeUpdate();
                 if (filasAfectadas == 0) {
                     throw new PokemonNotFoundException("Pokemon no encontrado");

@@ -36,9 +36,9 @@ public class Controlador {
         this.modeloMetodos = new PokemonDaoImpl();
         PokemonDAObdd.cargarBaseDeDatos();
         //Meto un pijachu para que no salte el nullpointer ecxception
-        if(pokemones.isEmpty()) pokemones.add(pijachu);
-        modeloMetodos.leerTodos();
-        pokemones.addAll((modeloMetodos.leerTodos()));
+//        if(pokemones.isEmpty()) pokemones.add(pijachu);
+        actualizarArrayPokemon();
+
         this.vista.getBotonVerListaPokemon().addActionListener(e -> {
             listarPokemon();
         });
@@ -60,8 +60,10 @@ public class Controlador {
     }
 
     private void listarPokemon() {
+        if (pokemones.isEmpty()){
+            vista.alertar("No hay Pokemons, por favor introduce alguno!");
+        }
         StringBuilder sb = new StringBuilder();
-
         for (Pokemon pokemonFor: pokemones) {
             sb.append(pokemonFor.getNombre()).append("\n");
         }
@@ -90,16 +92,21 @@ public class Controlador {
         try {
             //Intentamos crear un Pokemon. Si los valores son null, o si se introduce !numeros en los campos númericos, se manejarán las excepciones.
             Pokemon pokemon = new Pokemon(
-                    vista.getTextoNombre().getText(),
+                    vista.getTextoNombre().getText().trim().toUpperCase(),
                     Tipo.valueOf(Objects.requireNonNull(vista.getTipoCombobox().getSelectedItem()).toString()),
                     Integer.parseInt(vista.getTextFieldVida().getText()),
                     Integer.parseInt(vista.getTextFieldAtaque().getText()),
                     Integer.parseInt(vista.getTextFieldDefensa().getText()));
             //Intentamos introducir el pokemon creado en la base de datos. Si ya existe un pokemon con ese nombre, lanzará la excepción PokemonRepeatedException e.
             modeloMetodos.crear(pokemon);
-            vista.alertar("Pokemon " + pokemon.getNombre() + "creado correctamente");
+            pokemones.add(pokemon);
+            if (existePokemon(pokemon)) {
+                throw new PokemonRepeatedException();
+            }
         } catch (PokemonRepeatedException e) {
+            vista.alertar("Error, el Pokemon ya existe.");
             throw new RuntimeException(e);
+
         } catch (NullPointerException e){
             vista.alertar("Tienes que introducir todos los datos!");
         }  catch (NumberFormatException e) {
@@ -111,14 +118,22 @@ public class Controlador {
     private boolean existePokemon(Pokemon pokemon){
         boolean existe = false;
         for (Pokemon pokemonFor : pokemones) {
-            if (pokemonFor.getNombre().equals(pokemon.getNombre())){
+            if (pokemonFor.getNombre().trim().toUpperCase().equals(pokemon.getNombre().trim().toUpperCase())){
             existe = true;
             }
         }
         return existe;
     }
 
+    private void actualizarArrayPokemon(){
+        modeloMetodos.leerTodos();
+        pokemones.addAll((modeloMetodos.leerTodos()));
+    }
 
+    private void pokemonSonido(Pokemon pokemon){
+        pokemon = pijachu;
+        System.out.println("Pija pija!!!");
+    }
 
 
 

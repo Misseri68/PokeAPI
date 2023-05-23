@@ -9,4 +9,5 @@ package org.infantaelena.excepciones;
  *
  */
 public class PokemonRepeatedException extends Exception{
+
 }

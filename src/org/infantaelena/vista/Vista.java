@@ -8,7 +8,7 @@ import java.util.EnumSet;
 /**
  * Clase que representa la vista de la aplicación
  * Implementar con menus de texto o con interfaz gráfica
- * @author
+ * @author Ariadna López, Dragos Alexandru, Adriana Aránguez
  * @version 1.0
  * @date 24/04/2023
  *
@@ -39,7 +39,10 @@ public class Vista extends JFrame {
     private JButton filtrarPorTipo;
     private ArrayList<Tipo> tipoEnum = new ArrayList<>(EnumSet.allOf(Tipo.class));
 
-
+    /**
+     * Constructor de la clase Vista.
+     * Configura la apariencia y propiedades de la ventana.
+     */
     public Vista() {
         super("pokeAPI");
         setContentPane(panel);
@@ -236,7 +239,13 @@ public class Vista extends JFrame {
 
 
 
-    //method to show an info alert
+    // Métodos getters y setters para los componentes de la vista...
+
+    /**
+     * Método para mostrar una alerta informativa.
+     *
+     * @param texto el texto de la alerta
+     */
     public void alertar(String texto) {
         JOptionPane.showMessageDialog(rootPane, texto);
     }

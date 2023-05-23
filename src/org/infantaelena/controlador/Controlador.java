@@ -15,7 +15,7 @@ import java.util.Objects;
  * Clase que se encarga de obtener los datos de la vista
  * y enviarlos al modelo para que los procese
  *
- * @author
+ * @author Ariadna López, Dragos Alexandru y Adriana Aránguez
  * @version 1.0
  * @date 24/04/2023
  *
@@ -59,60 +59,83 @@ public class Controlador {
         });
     }
 
+    /**
+     * Muestra en el área de texto de la vista los nombres de los Pokémon almacenados en la lista de Pokémon.
+     * Si la lista está vacía, muestra un mensaje de alerta.
+     */
     private void listarPokemon() {
+        // Verificar si la lista de Pokémon está vacía
         if (pokemones.isEmpty()){
             vista.alertar("No hay Pokemons, por favor introduce alguno!");
         }
+        // Crear un StringBuilder para construir el contenido a mostrar en el área de texto
         StringBuilder sb = new StringBuilder();
+        // Iterar sobre cada Pokémon en la lista de Pokémon
         for (Pokemon pokemonFor: pokemones) {
+            // Agregar el nombre del Pokémon actual al StringBuilder, seguido de un salto de línea
             sb.append(pokemonFor.getNombre()).append("\n");
         }
+        // Establecer el texto construido en el área de texto de la vista
         vista.getAreadeTexto().setText(sb.toString());
 
     }
-
-    private void seleccionarPokemon(String pokemonName){
-
+    /**
+     * Selecciona un Pokémon y muestra su información en los campos de texto de la vista.
+     * Si el Pokémon no se encuentra, muestra un mensaje de alerta.
+     *
+     * @param pokemonName Nombre del Pokémon a seleccionar
+     */
+    private void seleccionarPokemon(String pokemonName) {
         try {
-             Pokemon pokemon = modeloMetodos.leerPorNombre(pokemonName);
-             vista.getTextoNombre().setText((pokemon.getNombre().trim().toUpperCase()));
-             vista.getTipoCombobox().setSelectedItem(String.valueOf(pokemon.getTipo()));
-             vista.getTextFieldVida().setText(String.valueOf(pokemon.getVida()));
-             vista.getTextFieldAtaque().setText(String.valueOf(pokemon.getAtaque()));
-             vista.getTextFieldDefensa().setText(String.valueOf(pokemon.getDefensa()));
+            // Leer el Pokémon por su nombre utilizando el modelo de métodos
+            Pokemon pokemon = modeloMetodos.leerPorNombre(pokemonName);
 
-
+            // Establecer los valores del Pokémon en los campos de texto de la vista
+            vista.getTextoNombre().setText((pokemon.getNombre().trim().toUpperCase()));
+            vista.getTipoCombobox().setSelectedItem(String.valueOf(pokemon.getTipo()));
+            vista.getTextFieldVida().setText(String.valueOf(pokemon.getVida()));
+            vista.getTextFieldAtaque().setText(String.valueOf(pokemon.getAtaque()));
+            vista.getTextFieldDefensa().setText(String.valueOf(pokemon.getDefensa()));
         } catch (PokemonNotFoundException e) {
-            vista.alertar("Error, el Pokemon no se ha encontrado");
+            vista.alertar("Error, el Pokémon no se ha encontrado");
         }
-
     }
 
-    private void crearPokemon(){
+    /**
+     * Crea un nuevo Pokémon con los valores ingresados en los campos de texto de la vista.
+     * Si el Pokémon ya existe en la base de datos, muestra un mensaje de alerta.
+     * Si faltan datos o los valores numéricos son incorrectos, muestra mensajes de alerta correspondientes.
+     * Después de crear el Pokémon, lo agrega a la base de datos y a la lista de Pokémones.
+     * @throws RuntimeException Si el Pokémon ya existe en la base de datos
+     */
+    private void crearPokemon() {
         try {
-            //Intentamos crear un Pokemon. Si los valores son null, o si se introduce !numeros en los campos númericos, se manejarán las excepciones.
+            // Intentamos crear un Pokémon utilizando los valores de los campos de texto de la vista
             Pokemon pokemon = new Pokemon(
                     vista.getTextoNombre().getText().trim().toUpperCase(),
                     Tipo.valueOf(Objects.requireNonNull(vista.getTipoCombobox().getSelectedItem()).toString()),
                     Integer.parseInt(vista.getTextFieldVida().getText()),
                     Integer.parseInt(vista.getTextFieldAtaque().getText()),
                     Integer.parseInt(vista.getTextFieldDefensa().getText()));
-            //Intentamos introducir el pokemon creado en la base de datos. Si ya existe un pokemon con ese nombre, lanzará la excepción PokemonRepeatedException e.
+
+            // Intentamos introducir el Pokémon creado en la base de datos
             modeloMetodos.crear(pokemon);
-            pokemones.add(pokemon);
+
+            // Verificamos si el Pokémon ya existe en la lista de Pokémones
             if (existePokemon(pokemon)) {
                 throw new PokemonRepeatedException();
             }
-        } catch (PokemonRepeatedException e) {
-            vista.alertar("Error, el Pokemon ya existe.");
-            throw new RuntimeException(e);
 
-        } catch (NullPointerException e){
+            // Agregamos el Pokémon a la lista de Pokémones
+            pokemones.add(pokemon);
+        } catch (PokemonRepeatedException e) {
+            vista.alertar("Error, el Pokémon ya existe.");
+            throw new RuntimeException(e);
+        } catch (NullPointerException e) {
             vista.alertar("Tienes que introducir todos los datos!");
-        }  catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             vista.alertar("Los valores de vida, ataque y defensa deben ser números enteros!");
         }
-
     }
 /**
     public int buscarPokemon(String nombre, int index) {
@@ -137,6 +160,12 @@ public class Controlador {
         }
     }
     **/
+
+    /**
+     * Verifica si un Pokémon ya existe en la lista de Pokémones.
+     * @param pokemon El Pokémon a verificar
+     * @return true si el Pokémon ya existe, false en caso contrario
+     */
     private boolean existePokemon(Pokemon pokemon){
         boolean existe = false;
         for (Pokemon pokemonFor : pokemones) {
@@ -146,17 +175,22 @@ public class Controlador {
         }
         return existe;
     }
-
-    private void actualizarArrayPokemon(){
-        modeloMetodos.leerTodos();
-        pokemones.addAll((modeloMetodos.leerTodos()));
+    /**
+     * Actualiza el array de Pokémones utilizando los datos obtenidos del modelo.
+     */
+    private void actualizarArrayPokemon() {
+        modeloMetodos.leerTodos(); // Obtener todos los Pokémones del modelo
+        pokemones.addAll(modeloMetodos.leerTodos()); // Agregar los Pokémones al array de Pokémones
     }
-
-    private void pokemonSonido(Pokemon pokemon){
-        pokemon = pijachu;
-        System.out.println("Pija pija!!!");
+    /**
+     * Genera un sonido específico para un Pokémon.
+     *
+     * @param pokemon El Pokémon al que se le generará el sonido.
+     */
+    private void pokemonSonido(Pokemon pokemon) {
+        pokemon = pijachu; // Asignar el valor de "pijachu" al parámetro "pokemon"
+        System.out.println("Pija pija!!!"); // Imprimir el sonido generado
     }
-
 /** posible método para borrar pokemones
     public void borrarPokemon(Pokemon pokemon, int index) {
         // el índice está en un rango válido?

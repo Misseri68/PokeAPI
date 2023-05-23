@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class PokemonDAObdd {
+    /**
+     * Carga la base de datos con la estructura de la tabla y datos de ejemplo.
+     */
     public static void cargarBaseDeDatos() {
         String databaseFileName="pokeapi.db";
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {

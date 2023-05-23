@@ -9,7 +9,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Implementación de la interfaz PokemonDAO que maneja la persistencia de los objetos Pokemon en una base de datos.
+ */
 public class PokemonDaoImpl implements PokemonDAO {
 String databaseFileName = "pokeapi.db";
     @Override

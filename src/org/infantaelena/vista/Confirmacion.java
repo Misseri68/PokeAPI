@@ -12,7 +12,7 @@ public class Confirmacion extends JFrame {
     private JLabel preguntaJlabel;
 
     public Confirmacion( ) {
-        super("pokeAPI");
+        super("confirmacion");
         setContentPane(confirmacionJlabel);
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

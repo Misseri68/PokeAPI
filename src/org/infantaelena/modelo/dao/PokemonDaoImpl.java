@@ -84,15 +84,17 @@ String databaseFileName = "pokeapi.db";
 
     @Override
     public void actualizar(Pokemon pokemon) throws PokemonNotFoundException {
+        String nombrePokemon = pokemon.getNombre();
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName)) {
-            String actualizarQuery = "UPDATE Pokemon SET nombre = ?, tipo = ?, vida = ?, ataque = ?, defensa = ? WHERE id = ?";
+            String actualizarQuery = "UPDATE Pokemon SET nombre = ?, tipo = ?, vida = ?, ataque = ?, defensa = ? WHERE nombre = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(actualizarQuery)) {
                 preparedStatement.setString(1, pokemon.getNombre().trim().toUpperCase());
                 preparedStatement.setString(2, String.valueOf(pokemon.getTipo()));
                 preparedStatement.setInt(3, pokemon.getVida());
                 preparedStatement.setInt(4, pokemon.getAtaque());
                 preparedStatement.setInt(5, pokemon.getDefensa());
-                preparedStatement.setInt(6, pokemon.getId());
+                preparedStatement.setString(6, nombrePokemon);
+
                 int filasAfectadas = preparedStatement.executeUpdate();
                 if (filasAfectadas == 0) {
                     throw new PokemonNotFoundException("Pokemon no encontrado.");

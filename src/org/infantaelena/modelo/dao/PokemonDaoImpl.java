@@ -94,7 +94,7 @@ String databaseFileName = "pokeapi.db";
                 preparedStatement.setInt(4, pokemon.getAtaque());
                 preparedStatement.setInt(5, pokemon.getDefensa());
                 preparedStatement.setString(6, nombrePokemon);
-
+                preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             System.out.println("Error al actualizar el Pokemon.");

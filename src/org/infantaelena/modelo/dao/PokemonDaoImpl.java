@@ -48,7 +48,7 @@ String databaseFileName = "pokeapi.db";
                         pokemon.setAtaque(resultSet.getInt("ataque"));
                         pokemon.setDefensa(resultSet.getInt("defensa"));
                     } else {
-                        throw new PokemonNotFoundException("Pokemon no encontrado");
+                        throw new PokemonNotFoundException();
                     }
                 }
             }
@@ -95,10 +95,6 @@ String databaseFileName = "pokeapi.db";
                 preparedStatement.setInt(5, pokemon.getDefensa());
                 preparedStatement.setString(6, nombrePokemon);
 
-                int filasAfectadas = preparedStatement.executeUpdate();
-                if (filasAfectadas == 0) {
-                    throw new PokemonNotFoundException("Pokemon no encontrado.");
-                }
             }
         } catch (SQLException e) {
             System.out.println("Error al actualizar el Pokemon.");
@@ -111,10 +107,7 @@ String databaseFileName = "pokeapi.db";
             String borrarQuery = "DELETE FROM Pokemon WHERE nombre = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(borrarQuery)) {
                 preparedStatement.setString(1, nombre.trim().toUpperCase());
-                int filasAfectadas = preparedStatement.executeUpdate();
-                if (filasAfectadas == 0) {
-                    throw new PokemonNotFoundException("Pokemon no encontrado");
-                }
+                preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             System.out.println("Error al eliminar al pokemon por nombre.");

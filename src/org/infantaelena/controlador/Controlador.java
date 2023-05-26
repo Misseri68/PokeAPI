@@ -53,8 +53,6 @@ public class Controlador {
             });
             this.preguntarparaEliminar.getNOButton().addActionListener(ex -> {preguntarparaEliminar.dispose();});
         });
-        this.vista.getFiltrarPorTipo().addActionListener(e -> {filtrarPorTipo();});
-
     }
 
     /**
@@ -88,7 +86,6 @@ public class Controlador {
      */
     private void seleccionarPokemon(String pokemonName) {
         if (pokemonName.toUpperCase().trim().equals("PIJACHU")) pokemonSonido();
-        else if (pokemonName.toUpperCase().trim().equals("VAPOREON")) vista.alertarVaporeon("Hey guys, did you know that in terms of male human and female Pokémon breeding, \nVaporeon is the most compatible Pokémon for humans? Not only are they in the field egg group, \nwhich is mostly comprised of mammals, Vaporeon are an average of 3\"03' tall and 63.9 pounds........");
         else {
             try {
                 // Leer el Pokémon por su nombre utilizando el método de modelo.
@@ -141,10 +138,15 @@ public class Controlador {
         }
     }
 
-    private void actualizarPokemon(){
+    /**
+     * Actualiza un Pokémon en el sistema.
+     */
+    private void actualizarPokemon() {
+        // Obtiene el nombre del Pokémon ingresado en la vista y lo convierte a mayúsculas
         String nombrePokemon = vista.getTextoNombre().getText().trim().toUpperCase();
 
-        try{
+        try {
+            // Crea un nuevo objeto Pokémon con los datos ingresados en la vista
             Pokemon pokemon = new Pokemon(
                     nombrePokemon,
                     Tipo.valueOf(Objects.requireNonNull(vista.getTipoCombobox().getSelectedItem()).toString()),
@@ -152,55 +154,60 @@ public class Controlador {
                     Integer.parseInt(vista.getTextFieldAtaque().getText()),
                     Integer.parseInt(vista.getTextFieldDefensa().getText())
             );
-            if (!existePokemon(nombrePokemon)){
-                throw new PokemonNotFoundException();
-            }
-            else{
+
+            // Verifica si el Pokémon existe en el sistema
+            if (!existePokemon(nombrePokemon)) {
+                throw new PokemonNotFoundException(); // Lanza una excepción si el Pokémon no se encuentra
+            } else {
+                // Actualiza el Pokémon en el modelo de datos
                 modeloMetodos.actualizar(pokemon);
+
+                // Recarga el array de Pokémon en la vista
                 recargarArrayPokemon();
+
+                // Muestra un mensaje de alerta indicando que el Pokémon se ha actualizado correctamente
                 vista.alertar("Pokemon actualizado correctamente!");
             }
-        } catch (PokemonNotFoundException e){
+        } catch (PokemonNotFoundException e) {
+            // Captura la excepción de Pokémon no encontrado y muestra un mensaje de alerta correspondiente
             vista.alertar("Error, el Pokémon no se ha encontrado");
         } catch (NullPointerException e) {
+            // Captura la excepción de puntero nulo y muestra un mensaje de alerta correspondiente
             vista.alertar("Tienes que introducir todos los datos!");
         } catch (NumberFormatException e) {
+            // Captura la excepción de formato de número incorrecto y muestra un mensaje de alerta correspondiente
             vista.alertar("Los valores de vida, ataque y defensa deben ser números enteros!");
         }
     }
+
     //TODO: arreglarlo
-    private void borrarPokemon(){
+    /**
+     * Borra un Pokémon del sistema.
+     */
+    private void borrarPokemon() {
+        // Obtiene el nombre del Pokémon ingresado en la vista y lo convierte a mayúsculas
         String nombrePokemon = vista.getTextoNombre().getText().trim().toUpperCase();
+
         try {
+            // Verifica si el Pokémon existe en el sistema
             if (!existePokemon(nombrePokemon)) {
-                throw new PokemonNotFoundException();
-            }
-            else {
+                throw new PokemonNotFoundException(); // Lanza una excepción si el Pokémon no se encuentra
+            } else {
+                // Elimina el Pokémon del modelo de datos por su nombre
                 modeloMetodos.eliminarPorNombre(nombrePokemon);
+
+                // Muestra un mensaje de alerta indicando que el Pokémon ha sido eliminado correctamente
                 vista.alertar("Pokemon asesinado correctamente! =)");
+
+                // Vuelve a listar los Pokémon en la vista
                 listarPokemon();
             }
-        } catch (PokemonNotFoundException e){
+        } catch (PokemonNotFoundException e) {
+            // Captura la excepción de Pokémon no encontrado y muestra un mensaje de alerta correspondiente
             vista.alertar("Error, el Pokémon no se ha encontrado");
         }
     }
-    private void filtrarPorTipo(){
-        // Crear un StringBuilder para construir el contenido a mostrar en el área de texto
-        StringBuilder sb = new StringBuilder();
-        recargarArrayPokemon();
-        if (pokemones.isEmpty()){
-            vista.getAreadeTexto().setText("");
-            vista.alertar("No hay Pokemon, por favor introduce alguno!");
-        }
-        for (Pokemon pokemonFor: pokemones) {
-            if(pokemonFor.getTipo().toString().equals(vista.getTipoCombobox().getSelectedItem().toString())){
-                // Agregar el nombre del Pokémon actual al StringBuilder, seguido de un salto de línea
-                sb.append(pokemonFor.getNombre()).append("\n");
-            }
-        }
-        // Establecer el texto construido en el área de texto de la vista
-        vista.getAreadeTexto().setText(sb.toString());
-    }
+
 
 
     /**
@@ -229,7 +236,7 @@ public class Controlador {
 
     //Esto de aquí es un Easter Egg
     private void pokemonSonido() {
-        vista.alertarPijachu("PIJA PIJA!!!! ( ͡° ͜ʖ ͡°)");
+        vista.alertar("PIJA PIJA!!!! ( ͡° ͜ʖ ͡°)");
     }
 
 }

@@ -1,6 +1,7 @@
 package org.infantaelena.vista;
 import org.infantaelena.modelo.entidades.Tipo;
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
@@ -14,6 +15,10 @@ import java.util.EnumSet;
  *
  */
 public class Vista extends JFrame {
+
+    private static ImageIcon pijiCono;
+    private static ImageIcon vaporIcono;
+
     private JLabel ataqueLabel;
     private JLabel defensaLabel;
     private JTextField textFieldVida;
@@ -247,7 +252,29 @@ public class Vista extends JFrame {
      * @param texto el texto de la alerta
      */
     public void alertar(String texto) {
+        UIManager.put("OptionPane.icon", null);
         JOptionPane.showMessageDialog(rootPane, texto);
+    }
+    public void alertarPijachu(String texto) {
+        try{
+          pijiCono=  new ImageIcon("easterEgg(dontlook!!).png");
+            Image resizedImage = pijiCono.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            pijiCono = new ImageIcon(resizedImage);
+        } catch (Exception e){
+            System.err.println("No se ha encontrado la imagen.");
+        }
+        JOptionPane.showMessageDialog(null, texto, "( ͡° ͜ʖ ͡°)", JOptionPane.INFORMATION_MESSAGE, pijiCono);
+    }
+
+    public void alertarVaporeon(String texto) {
+        try{
+            vaporIcono=  new ImageIcon("vaporIcono.png");
+            Image resizedImage = vaporIcono.getImage().getScaledInstance(100, 60, Image.SCALE_SMOOTH);
+            vaporIcono = new ImageIcon(resizedImage);
+        } catch (Exception e){
+            System.err.println("No se ha encontrado la imagen.");
+        }
+        JOptionPane.showMessageDialog(null, texto, "( ͡° ͜ʖ ͡°)", JOptionPane.INFORMATION_MESSAGE, vaporIcono);
     }
 
 }

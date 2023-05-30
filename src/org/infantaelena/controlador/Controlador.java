@@ -39,9 +39,7 @@ public class Controlador {
         PokemonDAObdd.cargarBaseDeDatos();
         listarPokemon();
         this.vista.getBotonVerListaPokemon().addActionListener(e -> {listarPokemon();});
-        this.vista.getFiltrarPorTipo().addActionListener(e -> {
-//TODO
-        });
+        this.vista.getFiltrarPorTipo().addActionListener(e -> {filtrarPorTipo();});
         this.vista.getBotonSeleccionarPokemon().addActionListener(e -> {seleccionarPokemon(vista.getTextoNombre().getText().trim().toUpperCase());});
         this.vista.getBotonCrearPokemon().addActionListener(e -> {crearPokemon();});
         this.vista.getBotonActualizarPokemon().addActionListener(e -> {actualizarPokemon();});
@@ -86,6 +84,7 @@ public class Controlador {
      */
     private void seleccionarPokemon(String pokemonName) {
         if (pokemonName.toUpperCase().trim().equals("PIJACHU")) pokemonSonido();
+        else if (pokemonName.toUpperCase().trim().equals("VAPOREON")) vista.alertarVaporeon("Hey guys, did you know that in terms of male human and female Pokémon breeding, \nVaporeon is the most compatible Pokémon for humans? Not only are they in the field egg group, \nwhich is mostly comprised of mammals, Vaporeon are an average of 3\"03' tall and 63.9 pounds........");
         else {
             try {
                 // Leer el Pokémon por su nombre utilizando el método de modelo.
@@ -208,6 +207,23 @@ public class Controlador {
         }
     }
 
+    private void filtrarPorTipo(){
+        // Crear un StringBuilder para construir el contenido a mostrar en el área de texto
+        StringBuilder sb = new StringBuilder();
+        recargarArrayPokemon();
+        if (pokemones.isEmpty()){
+            vista.getAreadeTexto().setText("");
+            vista.alertar("No hay Pokemon, por favor introduce alguno!");
+        }
+        for (Pokemon pokemonFor: pokemones) {
+            if(pokemonFor.getTipo().toString().equals(vista.getTipoCombobox().getSelectedItem().toString())){
+                // Agregar el nombre del Pokémon actual al StringBuilder, seguido de un salto de línea
+                sb.append(pokemonFor.getNombre()).append("\n");
+            }
+        }
+        // Establecer el texto construido en el área de texto de la vista
+        vista.getAreadeTexto().setText(sb.toString());
+    }
 
 
     /**

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PokeAPI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PokeAPI_jar</output-path>
+    <root id="archive" name="PokeAPI.jar">
+      <element id="module-output" name="PokeAPI" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/sqlite-jdbc-3.41.2.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

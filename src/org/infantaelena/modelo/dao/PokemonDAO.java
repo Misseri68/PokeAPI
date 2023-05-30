@@ -11,9 +11,8 @@ import org.infantaelena.modelo.entidades.Tipo;
 /**
  *
  * Interfaz que define los métodos de acceso a datos de la clase Pokemon
- * @author
- * @version 1.0
- * @date 24/04/2023
+ * @author Ariadna López, Dragos Alexandru y Adriana Aránguez
+ * @version 24/04/2023
  *
  */
 public interface PokemonDAO {

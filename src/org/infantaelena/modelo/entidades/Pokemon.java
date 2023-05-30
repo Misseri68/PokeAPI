@@ -1,9 +1,8 @@
 package org.infantaelena.modelo.entidades;
 /**
  * Clase que representa a un pokemon
- * @author
- * @version 1.0
- * @date 24/04/2023
+ * @author Dragos Alexandru
+ * @version 24/04/2023
  *
  */
 public class Pokemon {
@@ -78,8 +77,6 @@ public class Pokemon {
         this.defensa = defensa;
     }
 
-
-    //TODO: mirar si aquí hace falta cambiar el tipo a tipo.toString
     @Override
     public String toString() {
         return "Pokemon{" +

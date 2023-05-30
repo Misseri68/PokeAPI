@@ -10,8 +10,7 @@ import java.util.EnumSet;
  * Clase que representa la vista de la aplicación
  * Implementar con menus de texto o con interfaz gráfica
  * @author Ariadna López, Dragos Alexandru, Adriana Aránguez
- * @version 1.0
- * @date 24/04/2023
+ * @version 24/04/2023
  *
  */
 public class Vista extends JFrame {

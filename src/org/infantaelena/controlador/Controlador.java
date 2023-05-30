@@ -17,8 +17,7 @@ import java.util.Objects;
  * y enviarlos al modelo para que los procese
  *
  * @author Ariadna López, Dragos Alexandru y Adriana Aránguez
- * @version 1.0
- * @date 24/04/2023
+ * @version 24/04/2023
  *
  */
 

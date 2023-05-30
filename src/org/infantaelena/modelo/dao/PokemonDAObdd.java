@@ -30,7 +30,7 @@ public class PokemonDAObdd {
                 System.out.println("Error al crear la tabla Pokemon: " + e.getMessage());
                 return;
             }
-
+            /*
             // Insertar los datos de ejemplo en caso de querer insertarlos.
             String insertQuery = "INSERT INTO Pokemon (nombre, tipo, vida, ataque, defensa) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
@@ -40,11 +40,6 @@ public class PokemonDAObdd {
                 preparedStatement.setInt(3, 45);
                 preparedStatement.setInt(4, 49);
                 preparedStatement.setInt(5, 49);
-
-                if (datosDuplicados(preparedStatement)) {
-                    throw new PokemonRepeatedException();
-                }
-
                 preparedStatement.executeUpdate();
 
                 // Insertar Pokemon 2
@@ -65,23 +60,13 @@ public class PokemonDAObdd {
 
                 System.out.println("Los datos se han cargado correctamente en la base de datos!");
 
-
-            } catch (PokemonRepeatedException e) {
-                System.out.println(e.getMessage());
             } catch (SQLException e) {
                 System.out.println("Error al insertar los datos: " + e.getMessage());
             }
-
+             */
         } catch (SQLException e) {
             System.out.println("Error al conectar con la base de datos: " + e.getMessage());
         }
-    }
-
-    private static boolean datosDuplicados(PreparedStatement preparedStatement) throws SQLException {
-        ResultSet resultSet = preparedStatement.executeQuery("SELECT COUNT(*) FROM Pokemon WHERE nombre = ? AND tipo = ?");
-        resultSet.next();
-        int count = resultSet.getInt(1);
-        return count > 0;
     }
 
 // En caso de querer crear una bdd nueva lo podemos hacer con este main

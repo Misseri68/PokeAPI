@@ -33,10 +33,10 @@ public class PokemonDAObdd {
                 return;
             }
 
-            // Insertar los datos de ejemplo
-            String insertQuery = "INSERT INTO Pokemon (nombre, tipo, vida, ataque, defensa) VALUES (?, ?, ?, ?, ?)";
+            // Insertar los datos de ejemplo en caso de querer insertarlos.
+           /* String insertQuery = "INSERT INTO Pokemon (nombre, tipo, vida, ataque, defensa) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-            /*    // Insertar Pokemon 1
+               // Insertar Pokemon 1
                 preparedStatement.setString(1, "Bulbasaur");
                 preparedStatement.setString(2, "PLANTA");
                 preparedStatement.setInt(3, 45);
@@ -60,19 +60,21 @@ public class PokemonDAObdd {
                 preparedStatement.setInt(4, 48);
                 preparedStatement.setInt(5, 65);
                 preparedStatement.executeUpdate();
-*/
+
                 System.out.println("Los datos se han cargado correctamente en la base de datos!");
 
             } catch (SQLException e) {
                 System.out.println("Error al insertar los datos: " + e.getMessage());
             }
+
+            */
         } catch (SQLException e) {
             System.out.println("Error al conectar con la base de datos: " + e.getMessage());
         }
     }
 
 
-
+// En caso de querer crear una bdd nueva lo podemos hacer con este main
     public static void main(String[] args) {
         PokemonDAObdd.cargarBaseDeDatos();
     }

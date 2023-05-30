@@ -113,6 +113,10 @@ public class Controlador {
         // Intentamos crear un Pokémon utilizando los valores de los campos de texto de la vista
 
         try {
+            //He puesto estas variables para asi poder ejecutar el codigo y en caso de que sean negativos que den el error NumberFormatException.
+            int vida = Integer.parseInt(vista.getTextFieldVida().getText());
+            int ataque = Integer.parseInt(vista.getTextFieldAtaque().getText());
+            int defensa = Integer.parseInt(vista.getTextFieldDefensa().getText());
             Pokemon pokemon = new Pokemon(
                     nombrePokemon,
                     Tipo.valueOf(Objects.requireNonNull(vista.getTipoCombobox().getSelectedItem()).toString()),
@@ -121,7 +125,9 @@ public class Controlador {
                     Integer.parseInt(vista.getTextFieldDefensa().getText())
             );
             if (existePokemon(nombrePokemon)) throw new PokemonRepeatedException();
-            // Si no salta el throw, introducimos el Pokémon creado en la base de datos y reiniciamos el arrayList pokemones
+            if (vida < 0 || ataque < 0 || defensa < 0) throw new NumberFormatException();
+            // Si salta un throw puede ser por pokemon repetido o porque algun valor sea negativo.
+            // Si no salta el throw, introducimos el Pokémon creado en la base de datos y reiniciamos el arrayList pokemones.
             modeloMetodos.crear(pokemon);
             recargarArrayPokemon();
             listarPokemon();
@@ -133,7 +139,7 @@ public class Controlador {
         } catch (NullPointerException e) {
             vista.alertar("Tienes que introducir todos los datos!");
         } catch (NumberFormatException e) {
-            vista.alertar("Los valores de vida, ataque y defensa deben ser números enteros!");
+            vista.alertar("Los valores de vida, ataque y defensa deben ser números enteros y positivos!");
         }
     }
 
@@ -179,7 +185,6 @@ public class Controlador {
         }
     }
 
-    //TODO: arreglarlo
     /**
      * Borra un Pokémon del sistema.
      */
@@ -207,6 +212,9 @@ public class Controlador {
         }
     }
 
+    /**
+     * Filtra el Pokemon por su Tipo dentro la la base Pokemon utilizando el ArrayList pokemon y dentro del mismo coje los objetos pokemon y los organiza por tipo.
+     */
     private void filtrarPorTipo(){
         // Crear un StringBuilder para construir el contenido a mostrar en el área de texto
         StringBuilder sb = new StringBuilder();
@@ -224,7 +232,6 @@ public class Controlador {
         // Establecer el texto construido en el área de texto de la vista
         vista.getAreadeTexto().setText(sb.toString());
     }
-
 
     /**
      * Verifica si un Pokémon ya existe en la lista de Pokémones.
@@ -249,10 +256,8 @@ public class Controlador {
         pokemones.clear();
         pokemones.addAll(modeloMetodos.leerTodos()); // Agregar los Pokémones al array de Pokémones
     }
-
     //Esto de aquí es un Easter Egg
     private void pokemonSonido() {
         vista.alertarPijachu("PIJA PIJA!!!! ( ͡° ͜ʖ ͡°)");
     }
-
 }

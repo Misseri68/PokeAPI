@@ -61,13 +61,13 @@ class PokemonImpTest {
             Assertions.fail("No se ha encontrado al Pokemon");
         }
     }
-
+    // En leer Todos Tendremos que cambiar los valores de AssertEquals en caso de querer añadir mas pokemon a la bdd de lo contrario fallaran los test
     @org.junit.jupiter.api.Test
     void leerTodos() {
         //Atraparlos a todos.
         List<Pokemon> pokemons = pokemonDAO.leerTodos();
         Assertions.assertFalse(pokemons.isEmpty());
-        Assertions.assertEquals(2, pokemons.size());
+        Assertions.assertEquals(3, pokemons.size());
     }
 
     @org.junit.jupiter.api.Test

@@ -252,7 +252,7 @@ public class Controlador {
 
     //Esto de aquí es un Easter Egg
     private void pokemonSonido() {
-        vista.alertar("PIJA PIJA!!!! ( ͡° ͜ʖ ͡°)");
+        vista.alertarPijachu("PIJA PIJA!!!! ( ͡° ͜ʖ ͡°)");
     }
 
 }

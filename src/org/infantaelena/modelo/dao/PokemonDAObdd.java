@@ -35,7 +35,7 @@ public class PokemonDAObdd {
             String insertQuery = "INSERT INTO Pokemon (nombre, tipo, vida, ataque, defensa) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                 // Insertar Pokemon 1
-                preparedStatement.setString(1, "Bulbasaur");
+                preparedStatement.setString(1, "BULBASAUR");
                 preparedStatement.setString(2, "PLANTA");
                 preparedStatement.setInt(3, 45);
                 preparedStatement.setInt(4, 49);
@@ -43,7 +43,7 @@ public class PokemonDAObdd {
                 preparedStatement.executeUpdate();
 
                 // Insertar Pokemon 2
-                preparedStatement.setString(1, "Charmander");
+                preparedStatement.setString(1, "CHARMANDER");
                 preparedStatement.setString(2, "FUEGO");
                 preparedStatement.setInt(3, 39);
                 preparedStatement.setInt(4, 52);
@@ -51,7 +51,7 @@ public class PokemonDAObdd {
                 preparedStatement.executeUpdate();
 
                 // Insertar Pokemon 3
-                preparedStatement.setString(1, "Squirtle");
+                preparedStatement.setString(1, "SQUIRTLE");
                 preparedStatement.setString(2, "AGUA");
                 preparedStatement.setInt(3, 44);
                 preparedStatement.setInt(4, 48);
@@ -63,6 +63,7 @@ public class PokemonDAObdd {
             } catch (SQLException e) {
                 System.out.println("Error al insertar los datos: " + e.getMessage());
             }
+
              */
         } catch (SQLException e) {
             System.out.println("Error al conectar con la base de datos: " + e.getMessage());

@@ -151,6 +151,9 @@ public class Controlador {
 
         try {
             // Crea un nuevo objeto Pokémon con los datos ingresados en la vista
+            int vida = Integer.parseInt(vista.getTextFieldVida().getText());
+            int ataque = Integer.parseInt(vista.getTextFieldAtaque().getText());
+            int defensa = Integer.parseInt(vista.getTextFieldDefensa().getText());
             Pokemon pokemon = new Pokemon(
                     nombrePokemon,
                     Tipo.valueOf(Objects.requireNonNull(vista.getTipoCombobox().getSelectedItem()).toString()),
@@ -160,6 +163,7 @@ public class Controlador {
             );
 
             // Verifica si el Pokémon existe en el sistema
+            if (vida < 0 || ataque < 0 || defensa < 0) throw new NumberFormatException();
             if (!existePokemon(nombrePokemon)) {
                 throw new PokemonNotFoundException(); // Lanza una excepción si el Pokémon no se encuentra
             } else {
@@ -180,7 +184,7 @@ public class Controlador {
             vista.alertar("Tienes que introducir todos los datos!");
         } catch (NumberFormatException e) {
             // Captura la excepción de formato de número incorrecto y muestra un mensaje de alerta correspondiente
-            vista.alertar("Los valores de vida, ataque y defensa deben ser números enteros!");
+            vista.alertar("Los valores de vida, ataque y defensa deben ser números enteros y positivos!");
         }
     }
 
